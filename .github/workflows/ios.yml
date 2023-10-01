@@ -18,10 +18,15 @@ jobs:
         uses: actions/checkout@v3
       - name: dialTune
         run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+          scheme_list=$(xcodebuild -list -json 2>&1)
+          if echo "$scheme_list" | grep -q "unexpected token"; then
+            echo "xcodebuild did not produce valid JSON"
+            exit 1
+          else
+            default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+            echo $default | cat >default
+            echo Using default scheme: $default
+          fi
       - name: Build
         env:
           scheme: ${{ 'default' }}
