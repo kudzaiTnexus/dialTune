@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: macos-latest
 
+    env:
+      FASTLANE_USER: ${{ secrets.APPLE_ID }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
