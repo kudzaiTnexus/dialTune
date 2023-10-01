@@ -1,4 +1,4 @@
-name: iOS starter workflow
+name: iOS CI
 
 on:
   push:
@@ -10,38 +10,16 @@ on:
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: dialTune
-        run: |
-          scheme_list=$(xcodebuild -list -json 2>&1)
-          if echo "$scheme_list" | grep -q "unexpected token"; then
-            echo "xcodebuild did not produce valid JSON"
-            exit 1
-          else
-            default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-            echo $default | cat >default
-            echo Using default scheme: $default
-          fi
-      - name: Build
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
-        run: |
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=Any iOS Simulator Device"
-      - name: Test
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
-        run: |
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=Any iOS Simulator Device"
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Xcode
+      run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
+      
+    - name: Build & Test
+      run: |
+        xcodebuild build-for-testing -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0'
+        xcodebuild test-without-building -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0'
