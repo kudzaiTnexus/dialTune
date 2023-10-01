@@ -15,23 +15,3 @@ jobs:
     - name: List installed Xcode versions
       run: ls /Applications | grep Xcode
 
-
-jobs:
-  build:
-    runs-on: macos-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Xcode
-      run: sudo xcode-select -s '/Applications/Xcode_14.2.app/Contents/Developer'
-
-    - name: Boot Simulator
-      run: |
-        xcrun simctl boot "iPhone 12" || true
-
-    - name: Build & Test
-      run: |
-        xcodebuild build-for-testing -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,OS=15.0,name=iPhone 12'
-        xcodebuild test-without-building -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,OS=15.0,name=iPhone 12'
