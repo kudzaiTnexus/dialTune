@@ -9,9 +9,32 @@ on:
       - '*'
 
 jobs:
-  list_xcode_versions:
+  build:
     runs-on: macos-latest
-    steps:
-    - name: List installed Xcode versions
-      run: ls /Applications | grep Xcode
 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install xcode-install gem
+      run: sudo gem install xcode-install
+
+    - name: Install Xcode 14.3.1
+      run: |
+        xcversion update
+        xcversion install 14.3.1
+
+    - name: Set up Xcode
+      run: sudo xcode-select -s '/Applications/Xcode-14.3.1.app/Contents/Developer'
+
+    - name: Install iOS 15 simulator
+      run: xcversion simulators --install='iOS 15.0'
+
+    - name: Boot Simulator
+      run: |
+        xcrun simctl boot "iPhone 12" || true
+
+    - name: Build & Test
+      run: |
+        xcodebuild build-for-testing -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,OS=15.0,name=iPhone 12'
+        xcodebuild test-without-building -scheme dialTune -project dialTune.xcodeproj -destination 'platform=iOS Simulator,OS=15.0,name=iPhone 12'
