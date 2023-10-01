@@ -14,6 +14,12 @@
 		7B858E5C2AC9361400610638 /* dialTuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B858E5B2AC9361400610638 /* dialTuneTests.swift */; };
 		7B858E662AC9361400610638 /* dialTuneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B858E652AC9361400610638 /* dialTuneUITests.swift */; };
 		7B858E682AC9361400610638 /* dialTuneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B858E672AC9361400610638 /* dialTuneUITestsLaunchTests.swift */; };
+		7BB541C72AC9465900BCF8C6 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541C62AC9465900BCF8C6 /* NetworkClient.swift */; };
+		7BB541C92AC9468300BCF8C6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541C82AC9468300BCF8C6 /* NetworkError.swift */; };
+		7BB541CC2AC9474100BCF8C6 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541CB2AC9474100BCF8C6 /* MockNetworkClient.swift */; };
+		7BB541CF2AC947C600BCF8C6 /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541CE2AC947C600BCF8C6 /* NetworkClientTests.swift */; };
+		7BB541D12AC9486200BCF8C6 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541D02AC9486200BCF8C6 /* MockURLSession.swift */; };
+		7BB541D32AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB541D22AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,12 @@
 		7B858E612AC9361400610638 /* dialTuneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dialTuneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B858E652AC9361400610638 /* dialTuneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dialTuneUITests.swift; sourceTree = "<group>"; };
 		7B858E672AC9361400610638 /* dialTuneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dialTuneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7BB541C62AC9465900BCF8C6 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		7BB541C82AC9468300BCF8C6 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		7BB541CB2AC9474100BCF8C6 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
+		7BB541CE2AC947C600BCF8C6 /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
+		7BB541D02AC9486200BCF8C6 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		7BB541D22AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +107,8 @@
 		7B858E482AC9361300610638 /* dialTune */ = {
 			isa = PBXGroup;
 			children = (
+				7BB541C52AC9464900BCF8C6 /* Common */,
+				7BB541C42AC944A100BCF8C6 /* Service */,
 				7B858E492AC9361300610638 /* dialTuneApp.swift */,
 				7B858E4B2AC9361300610638 /* ContentView.swift */,
 				7B858E4D2AC9361400610638 /* Assets.xcassets */,
@@ -115,6 +129,8 @@
 		7B858E5A2AC9361400610638 /* dialTuneTests */ = {
 			isa = PBXGroup;
 			children = (
+				7BB541CD2AC947AA00BCF8C6 /* NetworkingTests */,
+				7BB541CA2AC9472700BCF8C6 /* Mocks */,
 				7B858E5B2AC9361400610638 /* dialTuneTests.swift */,
 			);
 			path = dialTuneTests;
@@ -127,6 +143,40 @@
 				7B858E672AC9361400610638 /* dialTuneUITestsLaunchTests.swift */,
 			);
 			path = dialTuneUITests;
+			sourceTree = "<group>";
+		};
+		7BB541C42AC944A100BCF8C6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		7BB541C52AC9464900BCF8C6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7BB541C62AC9465900BCF8C6 /* NetworkClient.swift */,
+				7BB541C82AC9468300BCF8C6 /* NetworkError.swift */,
+				7BB541D22AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7BB541CA2AC9472700BCF8C6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				7BB541CB2AC9474100BCF8C6 /* MockNetworkClient.swift */,
+				7BB541D02AC9486200BCF8C6 /* MockURLSession.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		7BB541CD2AC947AA00BCF8C6 /* NetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				7BB541CE2AC947C600BCF8C6 /* NetworkClientTests.swift */,
+			);
+			path = NetworkingTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +310,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B858E4C2AC9361300610638 /* ContentView.swift in Sources */,
+				7BB541C92AC9468300BCF8C6 /* NetworkError.swift in Sources */,
 				7B858E4A2AC9361300610638 /* dialTuneApp.swift in Sources */,
+				7BB541C72AC9465900BCF8C6 /* NetworkClient.swift in Sources */,
+				7BB541D32AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +321,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB541D12AC9486200BCF8C6 /* MockURLSession.swift in Sources */,
 				7B858E5C2AC9361400610638 /* dialTuneTests.swift in Sources */,
+				7BB541CC2AC9474100BCF8C6 /* MockNetworkClient.swift in Sources */,
+				7BB541CF2AC947C600BCF8C6 /* NetworkClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +403,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,6 +457,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -417,6 +477,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"dialTune/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = dialTune/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -453,6 +514,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"dialTune/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = dialTune/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
