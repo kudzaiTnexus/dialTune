@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B489CF92ACB8B5B00465C91 /* CountrySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B489CF82ACB8B5B00465C91 /* CountrySelectorView.swift */; };
+		7B489CFC2ACCD60900465C91 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B489CFB2ACCD60900465C91 /* SearchView.swift */; };
+		7B489CFE2ACCD65100465C91 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B489CFD2ACCD65100465C91 /* Country.swift */; };
+		7B489D002ACCD7BA00465C91 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B489CFF2ACCD7BA00465C91 /* SearchResultsView.swift */; };
+		7B489D022ACCDC4A00465C91 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B489D012ACCDC4A00465C91 /* Color+Extension.swift */; };
 		7B858E4A2AC9361300610638 /* dialTuneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B858E492AC9361300610638 /* dialTuneApp.swift */; };
 		7B858E4C2AC9361300610638 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B858E4B2AC9361300610638 /* ContentView.swift */; };
 		7B858E4E2AC9361400610638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B858E4D2AC9361400610638 /* Assets.xcassets */; };
@@ -40,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B489CF82ACB8B5B00465C91 /* CountrySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectorView.swift; sourceTree = "<group>"; };
+		7B489CFB2ACCD60900465C91 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		7B489CFD2ACCD65100465C91 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		7B489CFF2ACCD7BA00465C91 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		7B489D012ACCDC4A00465C91 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7B858E462AC9361300610638 /* dialTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dialTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B858E492AC9361300610638 /* dialTuneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dialTuneApp.swift; sourceTree = "<group>"; };
 		7B858E4B2AC9361300610638 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +94,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B489CF62ACB8B3D00465C91 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				7B489CF72ACB8B4400465C91 /* CountrySelector */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		7B489CF72ACB8B4400465C91 /* CountrySelector */ = {
+			isa = PBXGroup;
+			children = (
+				7B489CF82ACB8B5B00465C91 /* CountrySelectorView.swift */,
+				7B489CFD2ACCD65100465C91 /* Country.swift */,
+			);
+			path = CountrySelector;
+			sourceTree = "<group>";
+		};
+		7B489CFA2ACCD5EB00465C91 /* SharedView */ = {
+			isa = PBXGroup;
+			children = (
+				7B489CFB2ACCD60900465C91 /* SearchView.swift */,
+				7B489CFF2ACCD7BA00465C91 /* SearchResultsView.swift */,
+			);
+			path = SharedView;
+			sourceTree = "<group>";
+		};
 		7B858E3D2AC9361300610638 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +143,7 @@
 		7B858E482AC9361300610638 /* dialTune */ = {
 			isa = PBXGroup;
 			children = (
+				7B489CF62ACB8B3D00465C91 /* Features */,
 				7BB541C52AC9464900BCF8C6 /* Common */,
 				7BB541C42AC944A100BCF8C6 /* Service */,
 				7B858E492AC9361300610638 /* dialTuneApp.swift */,
@@ -155,9 +192,11 @@
 		7BB541C52AC9464900BCF8C6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7B489CFA2ACCD5EB00465C91 /* SharedView */,
 				7BB541C62AC9465900BCF8C6 /* NetworkClient.swift */,
 				7BB541C82AC9468300BCF8C6 /* NetworkError.swift */,
 				7BB541D22AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift */,
+				7B489D012ACCDC4A00465C91 /* Color+Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -309,8 +348,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B489CF92ACB8B5B00465C91 /* CountrySelectorView.swift in Sources */,
+				7B489D022ACCDC4A00465C91 /* Color+Extension.swift in Sources */,
+				7B489D002ACCD7BA00465C91 /* SearchResultsView.swift in Sources */,
 				7B858E4C2AC9361300610638 /* ContentView.swift in Sources */,
 				7BB541C92AC9468300BCF8C6 /* NetworkError.swift in Sources */,
+				7B489CFC2ACCD60900465C91 /* SearchView.swift in Sources */,
+				7B489CFE2ACCD65100465C91 /* Country.swift in Sources */,
 				7B858E4A2AC9361300610638 /* dialTuneApp.swift in Sources */,
 				7BB541C72AC9465900BCF8C6 /* NetworkClient.swift in Sources */,
 				7BB541D32AC948CF00BCF8C6 /* URLSessionDataTaskProtocol.swift in Sources */,
@@ -475,6 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dialTune/Preview Content\"";
+				DEVELOPMENT_TEAM = H5YJ8LJWG5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dialTune/Info.plist;
@@ -512,6 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dialTune/Preview Content\"";
+				DEVELOPMENT_TEAM = H5YJ8LJWG5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dialTune/Info.plist;
