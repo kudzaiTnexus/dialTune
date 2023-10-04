@@ -38,6 +38,7 @@ struct SearchResultsView<Item: SearchableItem>: View {
                         .padding(5)
                         .onTapGesture {
                             selectedItems.append(item)
+                            searchText = ""
                             showResults = false
                         }
                     }
@@ -49,7 +50,8 @@ struct SearchResultsView<Item: SearchableItem>: View {
             .background(Color.white)
             .cornerRadius(8)
             .shadow(radius: 5)
-            .animation(.snappy, value: showResults)
+            .transition(.opacity.combined(with: .scale(scale: 0.8)))
+            .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 10, initialVelocity: 0), value: showResults)
         }
     }
 }

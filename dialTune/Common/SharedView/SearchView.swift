@@ -39,12 +39,16 @@ struct SearchView<Item: SearchableItem>: View {
                     .focused($isTextFieldFocused)
                     .textFieldStyle(PlainTextFieldStyle())
                     .onChange(of: searchText) { value in
-                        showResults = !value.isEmpty
-                        displayCount = min(filteredItems.count, 5)
+                        withAnimation {
+                            showResults = !value.isEmpty
+                            displayCount = min(filteredItems.count, 5)
+                        }
                     }
                     .onChange(of: isTextFieldFocused) { val in
-                        showResults = val
-                        displayCount = min(filteredItems.count, 5)
+                        withAnimation {
+                            showResults = val
+                            displayCount = min(filteredItems.count, 5)
+                        }
                     }
             }
             .frame(height: 50)
@@ -61,12 +65,17 @@ struct SearchView<Item: SearchableItem>: View {
                             .frame(width: UIScreen.main.bounds.width - 50, height: 1.4)
                             .onAppear() {
                                 withAnimation(Animation.linear(duration: 4.8).repeatForever(autoreverses: true)) {
-                                    animationOffset = UIScreen.main.bounds.width - 50
+                                    withAnimation {
+                                        animationOffset = UIScreen.main.bounds.width - 50
+                                    }
                                 }
                             }
-                    }.clipped()
+                    }
+                    .clipped()
                 }
             )
+            .transition(.opacity)
+            .animation(.smooth, value: showResults)
             
 
             LazyVGrid(columns: [GridItem(), GridItem(), GridItem()], spacing: 12) {
@@ -80,8 +89,10 @@ struct SearchView<Item: SearchableItem>: View {
                         
                         Image(systemName: "xmark.circle.fill")
                             .onTapGesture {
-                                if let index = selectedItems.firstIndex(of: item) {
-                                    selectedItems.remove(at: index)
+                                withAnimation {
+                                    if let index = selectedItems.firstIndex(of: item) {
+                                        selectedItems.remove(at: index)
+                                    }
                                 }
                             }
                     }
@@ -91,6 +102,8 @@ struct SearchView<Item: SearchableItem>: View {
                     .cornerRadius(4)
                 }
             }
+            .transition(.move(edge: .trailing))
+            .animation(.easeIn(duration: 0.4), value: showResults)
         }
         .padding(.horizontal, 24)
         .overlay(
@@ -104,7 +117,7 @@ struct SearchView<Item: SearchableItem>: View {
                 )
                 .offset(y: 55)
                 .padding(.horizontal, 24)
-                .onTapGesture { } // This is to prevent tap through to the background gesture
+                .onTapGesture { } 
             },
             alignment: .top
         )
