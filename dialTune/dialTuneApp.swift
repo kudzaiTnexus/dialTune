@@ -6,12 +6,22 @@
 //
 
 import SwiftUI
+import Combine
 
 @main
 struct dialTuneApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                MainView()
+                    .navigationBarHidden(true)
+            }
+            .safeAreaInset(edge: .top) {
+                HomeViewNavBar()
+            }
         }
     }
 }
+
+
+
