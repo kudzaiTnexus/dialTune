@@ -12,22 +12,19 @@ protocol SearchableItem: Identifiable, Hashable {
     var displayName: String { get }
 }
 
-
 struct SearchView<Item: SearchableItem>: View {
     
-    @State private var searchText: String = ""
-    @State private var animationOffset: CGFloat = -150
-    @State private var showResults: Bool = false
-    @State private var selectedItems: [Item] = []
-    @State private var displayCount: Int = 0
-    @FocusState private var isTextFieldFocused: Bool
-
     var items: [Item]
-    var filteredItems: [Item] {
-        items.filter {
-            searchText.isEmpty ? true : $0.displayName.contains(searchText)
-        }
-    }
+    @Binding var searchText: String
+    @Binding var showResults: Bool
+    @Binding var selectedItems: [Item]
+    @Binding var displayCount: Int
+    @Binding var isSearchActive: Bool
+    
+    
+    @FocusState private var isTextFieldFocused: Bool
+    @State private var animationOffset: CGFloat = -150
+    
 
     var body: some View {
         VStack(spacing: 12) {
@@ -41,15 +38,29 @@ struct SearchView<Item: SearchableItem>: View {
                     .onChange(of: searchText) { value in
                         withAnimation {
                             showResults = !value.isEmpty
-                            displayCount = min(filteredItems.count, 5)
+                            displayCount = min(items.filter { $0.displayName.contains(value) }.count, 5)
                         }
                     }
                     .onChange(of: isTextFieldFocused) { val in
                         withAnimation {
                             showResults = val
-                            displayCount = min(filteredItems.count, 5)
+                            displayCount = min(items.filter { $0.displayName.contains(searchText) }.count, 5)
                         }
                     }
+                
+                // Add the cancel button
+                if isSearchActive {
+                    Button(action: {
+                        withAnimation {
+                            searchText = ""
+                            isSearchActive = false
+                            showResults = false
+                        }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                    }
+                }
             }
             .frame(height: 50)
             .background(
@@ -105,33 +116,7 @@ struct SearchView<Item: SearchableItem>: View {
             .transition(.move(edge: .trailing))
             .animation(.easeIn(duration: 0.4), value: showResults)
         }
-        .padding(.horizontal, 24)
-        .overlay(
-            Group {
-                SearchResultsView(
-                    items: filteredItems,
-                    selectedItems: $selectedItems,
-                    searchText: $searchText,
-                    showResults: $showResults,
-                    displayCount: $displayCount
-                )
-                .offset(y: 55)
-                .padding(.horizontal, 24)
-                .onTapGesture { } 
-            },
-            alignment: .top
-        )
-        .background(
-            Color.clear
-                .onTapGesture {
-                    withAnimation {
-                        showResults = false
-                    }
-                }
-        )
+        .padding(.leading, 8)
+        .padding(.trailing, 30)
     }
 }
-
-//#Preview {
-//    SearchView()
-//}
